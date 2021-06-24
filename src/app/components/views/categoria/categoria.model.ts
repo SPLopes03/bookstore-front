@@ -3,3 +3,9 @@ export interface Categoria {
     nome: String;
     desc: String;
 }
+
+export interface CategoriaUpdate {
+    id?: String;
+    nome: String;
+    descricao: String;
+}

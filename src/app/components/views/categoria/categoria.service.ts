@@ -2,7 +2,7 @@ import { environment } from './../../../../environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Categoria } from './categoria.model';
+import { Categoria, CategoriaUpdate } from './categoria.model';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Injectable({
@@ -27,6 +27,11 @@ export class CategoriaService {
     return this.http.get<Categoria>(url)
   }
 
+  findByIdUp(id: String): Observable<CategoriaUpdate> {
+    const url = `${this.baseUrl}/categorias/${id}`
+    return this.http.get<CategoriaUpdate>(url)
+  }
+
   create(categoria: Categoria): Observable<Categoria> {
     const url = `${this.baseUrl}/categorias`
     return this.http.post<Categoria>(url, categoria);
@@ -35,6 +40,11 @@ export class CategoriaService {
   delete(id: String): Observable<void> {
     const url = `${this.baseUrl}/categorias/${id}`
     return this.http.delete<void>(url)
+  }
+
+  update(categoria: CategoriaUpdate): Observable<void> {
+    const url = `${this.baseUrl}/categorias/${categoria.id}`
+    return this.http.put<void>(url, categoria)
   }
 
   mensagem(str: String): void {
